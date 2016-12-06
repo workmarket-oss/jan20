@@ -1,5 +1,17 @@
 /*
- * Copyright 2016, WorkMarket, Inc. All Rights Reserved.
+ * Copyright 2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.workmarket.jan20;
 
@@ -400,12 +412,13 @@ public final class TrialTest {
     };
   }
 
-  private void runExhaustionTest(final Trial trial,
-                                 final Meter compareValueRejectionCounter,
-                                 final Meter returnValueRejectionCounter,
-                                 final CountDownLatch latch,
-                                 final Callable<Observable<Integer>> control,
-                                 final Callable<Observable<Integer>> experiment) throws Exception {
+  private void runExhaustionTest(
+      final Trial trial,
+      final Meter compareValueRejectionCounter,
+      final Meter returnValueRejectionCounter,
+      final CountDownLatch latch,
+      final Callable<Observable<Integer>> control,
+      final Callable<Observable<Integer>> experiment) throws Exception {
     // First two will clog the pool and queue, the third should trigger a rejection by the executor.
     assertIsOneTwo(trial.doTrial(control, experiment, OK_AND_EQUAL, ROOT));
     assertIsOneTwo(trial.doTrial(control, experiment, OK_AND_EQUAL, ROOT));
@@ -569,11 +582,12 @@ public final class TrialTest {
     verify(successes, timeout(WAIT_TIMEOUT)).mark();
   }
 
-  private Observable<Integer> runWrappedTrial(final ThreadLocal<Integer> local,
-                                              final CallableObservableWrapper controlWrapper,
-                                              final CallableObservableWrapper experimentWrapper,
-                                              final Callable<Observable<Integer>> control,
-                                              final Callable<Observable<Integer>> experiment) throws Exception {
+  private Observable<Integer> runWrappedTrial(
+      final ThreadLocal<Integer> local,
+      final CallableObservableWrapper controlWrapper,
+      final CallableObservableWrapper experimentWrapper,
+      final Callable<Observable<Integer>> control,
+      final Callable<Observable<Integer>> experiment) throws Exception {
     reset(successes);
     local.set(ONE);
     // All this machination is to make *sure* by the time everything is looked at, that all background threads

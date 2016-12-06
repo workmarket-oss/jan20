@@ -1,5 +1,17 @@
 /*
- * Copyright 2016, WorkMarket, Inc. All Rights Reserved.
+ * Copyright 2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.workmarket.jan20;
 
@@ -130,8 +142,11 @@ public final class Trial {
    * @param metricRootName The root name from which to make metrics with.
    * @param whichReturn    Which value do you wish to be returned, CONTROL/CONTROL_ONLY or EXPERIMENT?
    */
-  public Trial(final ExecutorService executor, final MetricRegistry registry, final String metricRootName,
-               final WhichReturn whichReturn) {
+  public Trial(
+      final ExecutorService executor,
+      final MetricRegistry registry,
+      final String metricRootName,
+      final WhichReturn whichReturn) {
     this(executor, registry, metricRootName, Suppliers.ofInstance(whichReturn), IDENTITY_WRAPPER, IDENTITY_WRAPPER);
   }
 
@@ -146,8 +161,11 @@ public final class Trial {
    * @param metricRootName The root name from which to make metrics with.
    * @param whichReturn    Supplier of which value you wish to be returned, CONTROL/CONTROL_ONLY or EXPERIMENT?
    */
-  public Trial(final ExecutorService executor, final MetricRegistry registry, final String metricRootName,
-               final Supplier<WhichReturn> whichReturn) {
+  public Trial(
+      final ExecutorService executor,
+      final MetricRegistry registry,
+      final String metricRootName,
+      final Supplier<WhichReturn> whichReturn) {
     this(executor, registry, metricRootName, whichReturn, IDENTITY_WRAPPER, IDENTITY_WRAPPER);
   }
 
@@ -166,12 +184,13 @@ public final class Trial {
    * @param compareWrapper Wrapper that can be used to wrap whichever of control or experiment is only
    *                       used for comparison.
    */
-  public Trial(final ExecutorService executor,
-               final MetricRegistry registry,
-               final String metricRootName,
-               final WhichReturn whichReturn,
-               final CallableObservableWrapper returnWrapper,
-               final CallableObservableWrapper compareWrapper) {
+  public Trial(
+      final ExecutorService executor,
+      final MetricRegistry registry,
+      final String metricRootName,
+      final WhichReturn whichReturn,
+      final CallableObservableWrapper returnWrapper,
+      final CallableObservableWrapper compareWrapper) {
     this(executor, registry, metricRootName, Suppliers.ofInstance(whichReturn), returnWrapper, compareWrapper);
   }
 
@@ -190,12 +209,13 @@ public final class Trial {
    * @param compareWrapper Wrapper that can be used to wrap whichever of control or experiment is only
    *                       used for comparison.
    */
-  public Trial(final ExecutorService executor,
-               final MetricRegistry registry,
-               final String metricRootName,
-               final Supplier<WhichReturn> whichReturn,
-               final CallableObservableWrapper returnWrapper,
-               final CallableObservableWrapper compareWrapper) {
+  public Trial(
+      final ExecutorService executor,
+      final MetricRegistry registry,
+      final String metricRootName,
+      final Supplier<WhichReturn> whichReturn,
+      final CallableObservableWrapper returnWrapper,
+      final CallableObservableWrapper compareWrapper) {
     this.executor = executor;
     this.whichReturnSupplier = whichReturn;
     this.metricRootName = metricRootName;
@@ -213,8 +233,11 @@ public final class Trial {
    * @return The result of the control callable.
    * @throws Exception the exception that control would throw.
    */
-  public <T> Observable<T> doTrial(final Callable<Observable<T>> control, final Callable<Observable<T>> experiment,
-                                   final IsEqual<TrialResult<T>> isEqual, final String metricName) throws Exception {
+  public <T> Observable<T> doTrial(
+      final Callable<Observable<T>> control,
+      final Callable<Observable<T>> experiment,
+      final IsEqual<TrialResult<T>> isEqual,
+      final String metricName) throws Exception {
     final WhichReturn whichReturn = whichReturnSupplier.get();
     if (whichReturn == WhichReturn.CONTROL_ONLY) {
       return returnWrapper.wrap(control).call();
