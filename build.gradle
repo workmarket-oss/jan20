@@ -1,0 +1,16 @@
+dependencies {
+  // NOTE: if you add any compile dependencies not using wm.dependency
+  // or project, check the dependencies of "The Application" to make sure
+  // that if it depends on that library, that their versions match, or
+  // make them match before deploying or you WILL have a sad.
+  compile wm.dependency("guava")
+  compile wm.dependency("rx")
+  compile wm.dependency("slf4j")
+  compile wm.dependency("dropwizardmetrics")
+  compile wm.dependency("mockito")
+  compile project(":service-common-metric")
+  testCompile("org.hamcrest:hamcrest-library:1.3")
+}
+
+targetCompatibility = 1.7
+sourceCompatibility = 1.7
