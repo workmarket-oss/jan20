@@ -81,8 +81,7 @@ public abstract class IterableIsEqual<T> extends IsEqual<Iterable<T>> {
    * @throws DuplicateValueException if your key function is spitting out the same key for more than one value in a
    *                                 given iterable.
    */
-  public final <K> IterableIsEqual<T> correlateByKey(
-      final Function<? super T, ? extends K> keyFunction) {
+  public final <K> IterableIsEqual<T> correlateByKey(final Function<? super T, ? extends K> keyFunction) {
     Preconditions.checkNotNull(keyFunction);
     return new Correlator<T, K>(keyFunction, this);
   }

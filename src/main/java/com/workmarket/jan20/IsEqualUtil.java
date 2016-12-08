@@ -258,10 +258,11 @@ public final class IsEqualUtil {
      * @param name       the name to put into the errors list when they don't match
      * @return a new equal chain
      */
-    public <T> EqualChain isEquals(final T control,
-                                   final T experiment,
-                                   final IsEqual<T> isEqual,
-                                   final String name) {
+    public <T> EqualChain isEquals(
+        final T control,
+        final T experiment,
+        final IsEqual<T> isEqual,
+        final String name) {
       return continueChain(isEqual.apply(control, experiment), name);
     }
 
@@ -303,12 +304,13 @@ public final class IsEqualUtil {
    * @param mismatches A list of mismatches between the control and experiment
    * @return the map
    */
-  public static Map<String, Object> makeReportMap(final Object control,
-                                                  final Object experiment,
-                                                  final String method,
-                                                  final String name,
-                                                  final List<String> mismatches) {
-    final Map<String, Object> map = Maps.newHashMap();
+  public static Map<String, Object> makeReportMap(
+      final Object control,
+      final Object experiment,
+      final String method,
+      final String name,
+      final List<String> mismatches) {
+      final Map<String, Object> map = Maps.newHashMap();
     map.put("method", method);
     map.put("name", name);
     map.put("control", control);
