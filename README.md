@@ -5,6 +5,8 @@
 
 Jan20 is a succession framework which allows for comparing results from various code execution paths. The framework is useful when equality cannot be defined simply (e.g. when comparing payloads when one is a superset of the other's data). Work Market uses Jan20 during extraction of functionality from one system (our monolith) or another (our microservice architecture).
 
+For a more detailed explanation, see our [blog post](https://medium.com/@drewcsillag/a-succession-library-for-java-3beeab7acf9c#.c0a0eftpo). 
+
 ## How to use:
 
 ```groovy
