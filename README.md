@@ -20,6 +20,13 @@ dependencies {
 }
 ```
 
+## Demo code
+A demonstration of how to use it and the circumstances it reports the various metrics
+is [here](https://github.com/workmarket-oss/jan20/blob/master/demo/src/main/java/com/workmarket/jan20/demo/Demo.java)
+
+## JavaDoc
+Javadocs are [here](https://workmarket-oss.github.io/jan20/javadoc/)
+
 ## Reasoning behind the name:
 
 Jan 20 is a reference to when US presidential succession occurs.
