@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/workmarket-oss/jan20.svg?branch=master)](https://travis-ci.org/workmarket-oss/jan20)
 [![codecov.io](https://codecov.io/gh/workmarket-oss/jan20/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/workmarket-oss/jan20?branch=master)
+[![Download](https://api.bintray.com/packages/workmarketossdev/maven/jan20/images/download.svg) ](https://bintray.com/workmarketossdev/maven/jan20/_latestVersion)
 
 ## What is it?
 
@@ -15,7 +16,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.workmarket:jan20:1.0'
+  compile 'com.workmarket:jan20:1.0.1'
 }
 ```
 
@@ -26,3 +27,4 @@ Jan 20 is a reference to when US presidential succession occurs.
 ## Contribution:
 
 Please see [CONTRIBUTING.md](https://github.com/workmarket-oss/jan20/blob/master/CONTRIBUTING.md)
+
