@@ -1,6 +1,0 @@
-language: java
-script: ./gradlew clean build jacocoTestRep -i
-jdk: oraclejdk7
-env: TERM=dumb
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
