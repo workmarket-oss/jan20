@@ -9,6 +9,7 @@ ext {
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'net.nemerosa.versioning'
+apply plugin: 'org.ajoberstar.github-pages'
 
 jar {
   manifest {
@@ -77,4 +78,14 @@ bintray {
     vcsUrl = project.project_scm
     publicDownloadNumbers = true
   }
+}
+
+githubPages {
+ repoUri = 'git@github.com:workmarket-oss/jan20.git' // defaults to this project's origin URI
+ pages {
+   from javadoc
+   // by default this will copy into the root of the gh-pages branch and delete any previous files
+   // customizing the destination will only delete files within that target dir
+   into "javadoc/"
+ }
 }
