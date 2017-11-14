@@ -1,6 +1,12 @@
 language: java
 script: ./gradlew clean build jacocoTestRep -i
-jdk: oraclejdk7
+jdk: openjdk7
 env: TERM=dumb
+dist: precise
+sudo: required
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+before_install:
+  - sudo hostname "$(hostname | cut -c1-63)"
+  - sed -e "s/^\\(127\\.0\\.0\\.1.*\\)/\\1 $(hostname | cut -c1-63)/" /etc/hosts | sudo tee /etc/hosts
+install: true
